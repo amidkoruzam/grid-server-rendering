@@ -9,7 +9,10 @@ async function render(pageContext: PageContextServer) {
   const { Page, pageProps } = pageContext;
   if (!Page)
     throw new Error("My render() hook expects pageContext.Page to be defined");
+
+  const start = performance.now();
   const pageHtml = ReactDOMServer.renderToString(<Page {...pageProps} />);
+  const end = performance.now();
 
   const { documentProps } = pageContext.exports;
   const title = (documentProps && documentProps.title) || "Vite SSR app";
@@ -26,6 +29,7 @@ async function render(pageContext: PageContextServer) {
         <title>${title}</title>
       </head>
       <body>
+        <p>Time to render on server: ${(end - start).toString()}</p>
         <div id="react-root">${dangerouslySkipEscape(pageHtml)}</div>
       </body>
     </html>`;
