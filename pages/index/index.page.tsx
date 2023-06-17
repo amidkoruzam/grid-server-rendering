@@ -1,6 +1,4 @@
-import { Counter } from './Counter'
-
-export { Page }
+export { Page };
 
 function Page() {
   return (
@@ -9,10 +7,7 @@ function Page() {
       This page is:
       <ul>
         <li>Rendered to HTML.</li>
-        <li>
-          Interactive. <Counter />
-        </li>
       </ul>
     </>
-  )
+  );
 }
